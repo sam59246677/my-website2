@@ -25,9 +25,9 @@ form input, form button {
   padding: 8px 10px;
   font-size: 14px;
 }
-form input[type="text"] {
+/* form input[type="text"] {
   flex-grow: 1;
-}
+} */
 
 table {
   width: 100%;
