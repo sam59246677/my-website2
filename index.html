@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>کارهای من</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>کارهای من</h1>
+
+    <form id="task-form">
+      <input type="text" id="task-input" placeholder="عنوان کار را وارد کنید..." required />
+      <input type="date" id="task-date" required />
+      <input type="time" id="task-time" required />
+      <button type="submit">افزودن</button>
+    </form>
+
+
+    <table id="task-table">
+      <thead>
+        <tr>
+          <th>ردیف</th>
+          <th>عنوان کار</th>
+          <th>تاریخ و زمان</th>
+          <th>انجام شد</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button id="clear-btn">پاک کردن همه</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
