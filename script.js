@@ -31,7 +31,7 @@ form.addEventListener('submit', e => {
 });
 
 clearBtn.addEventListener('click', () => {
-  if (confirm('آیا مطمئن هستید همه تسک‌ها پاک شوند؟')) {
+  if (confirm('آیا مطمئن هستید همه یادداشت ها پاک شوند؟')) {
     localStorage.removeItem('tasks');
     renderTasks();
   }
@@ -89,7 +89,7 @@ function renderTasks() {
     deleteBtn.textContent = 'حذف';
     deleteBtn.className = 'delete-btn';
     deleteBtn.addEventListener('click', () => {
-      if (confirm('آیا مطمئن هستید این تسک حذف شود؟')) {
+      if (confirm('آیا مطمئن هستید این کار حذف شود؟')) {
         deleteTask(index);
       }
     });
@@ -108,9 +108,9 @@ function scheduleAlarm(task) {
   if (delay <= 0) return;
 
   setTimeout(() => {
-    alert(`زمان انجام تسک "${task.text}" رسید!`);
+    alert(`زمان انجام کار "${task.text}" رسید!`);
     if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification('یادآوری تسک', { body: `زمان: "${task.text}" رسیده!` });
+      new Notification('یادآوری کار', { body: `زمان: "${task.text}" رسیده!` });
     }
   }, delay);
 }
