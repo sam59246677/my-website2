@@ -4,6 +4,7 @@ const taskDate = document.querySelector('#task-date');
 const taskTime = document.querySelector('#task-time');
 const taskTableBody = document.querySelector('#task-table tbody');
 const clearBtn = document.querySelector('#clear-btn');
+const sortBtn = document.querySelector('#sort-btn');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -35,6 +36,17 @@ clearBtn.addEventListener('click', () => {
     localStorage.removeItem('tasks');
     renderTasks();
   }
+});
+
+sortBtn.addEventListener('click', () => {
+  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+  tasks.sort((a, b) => {
+    return (a.completed === b.completed) ? 0 : (a.completed ? 1 : -1);
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  renderTasks();
 });
 
 function addTask(text, date, time) {
@@ -125,7 +137,6 @@ function requestNotificationPermission() {
 requestNotificationPermission();
 renderTasks();
 
-// برای هر تسک ذخیره شده هم آلارم می‌گذاریم:
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 tasks.forEach(task => {
   if (!task.completed) scheduleAlarm(task);
