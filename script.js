@@ -81,14 +81,16 @@ function renderTasks() {
     if (task.completed) tr.classList.add('completed');
 
     const tdIndex = document.createElement('td');
-    tdIndex.textContent = index + 1;
+    
+    tdIndex.textContent = toPersianNumber(index + 1);
+
 
     const tdText = document.createElement('td');
     tdText.textContent = task.text;
 
     const tdDate = document.createElement('td');
-    tdDate.textContent = `${task.date} ${task.time}`;
-
+   
+    tdDate.textContent = toPersianNumber(`${(task.date)}`)+ toPersianNumber(` ${(task.time)}`);
     const tdDone = document.createElement('td');
     const doneBtn = document.createElement('button');
     doneBtn.textContent = task.completed ? 'لغو انجام' : 'انجام شد';
@@ -141,3 +143,8 @@ const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 tasks.forEach(task => {
   if (!task.completed) scheduleAlarm(task);
 });
+function toPersianNumber(number) {
+  const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
+  return number.toString().replace(/\d/g, d => persianDigits[d]);
+}
+
