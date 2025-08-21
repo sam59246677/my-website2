@@ -91,6 +91,20 @@ function renderTasks() {
     const tdDate = document.createElement('td');
    
     tdDate.textContent = toPersianNumber(`${(task.date)}`)+ toPersianNumber(` ${(task.time)}`);
+
+
+
+// تبدیل تاریخ میلادی به شمسی با استفاده از persian-date
+const pd = new persianDate(new Date(`${task.date}T${task.time}`));
+const shamsiDate = pd.format('YYYY/MM/DD HH:mm');
+
+tdDate.textContent = toPersianNumber(shamsiDate);
+
+
+
+
+
+
     const tdDone = document.createElement('td');
     const doneBtn = document.createElement('button');
     doneBtn.textContent = task.completed ? 'لغو انجام' : 'انجام شد';
