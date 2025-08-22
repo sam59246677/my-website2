@@ -1,6 +1,5 @@
 html, body {
   overflow-x: hidden;
-  max-width: 100vw;
   margin: 0;
   padding: 0;
   font-family: Tahoma, sans-serif;
@@ -15,14 +14,11 @@ body {
 
 .container {
   max-width: 700px;
-  width: 100%;
   margin: auto;
   background: white;
   padding: 15px 20px;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  overflow-x: hidden;
-  box-sizing: border-box;
 }
 
 h1 {
@@ -37,11 +33,10 @@ form {
   flex-wrap: wrap;
 }
 
-/* وسط‌چین کردن دکمه افزودن و رفتن به خط جدید */
 form button[type="submit"] {
-  flex-basis: 100%;      /* دکمه کل عرض خط جدید رو می‌گیره */
-  max-width: 200px;      /* عرض دکمه */
-  margin: 0 auto;        /* وسط‌چین کردن افقی */
+  flex-basis: 100%;
+  max-width: 200px;
+  margin: 0 auto;
   padding: 8px 0;
   cursor: pointer;
   background-color: #007bff;
@@ -49,13 +44,11 @@ form button[type="submit"] {
   border: none;
   border-radius: 4px;
   font-size: 14px;
-  text-align: center;
 }
 
 form input, form button {
   padding: 8px 10px;
   font-size: 14px;
-  box-sizing: border-box;
 }
 
 form input[type="text"] {
@@ -63,77 +56,66 @@ form input[type="text"] {
   min-width: 150px;
 }
 
-form input[type="date"],
 form input[type="time"] {
   flex-basis: 120px;
 }
 
-#sort-btn {
-  margin-bottom: 10px;
-  background-color: #17a2b8;
-  color: white;
-  border: none;
+#sort-btn, #clear-btn {
+  width: 100%;
   padding: 8px 12px;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 100%;
   box-sizing: border-box;
+  margin-top: 10px;
+}
+
+#sort-btn {
+  background-color: #17a2b8;
+  color: white;
+}
+
+#clear-btn {
+  background-color: #dc3545;
+  color: white;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  word-wrap: break-word;
 }
 
 thead th {
   background: #007bff;
   color: white;
   padding: 8px;
-  word-break: break-word;
 }
 
-/* کاهش عرض ستون ردیف */
 #task-table th:nth-child(1),
 #task-table td:nth-child(1),
 #task-table th:nth-child(5),
 #task-table td:nth-child(5) {
-  width: 40px ;
-  max-width: 40px;
+  width: 40px;
   text-align: center;
 }
 
-#task-table td:nth-child(3) {
-  width: 145px ;
-  max-width: 145px;
-  text-align:left;
-    text-wrap: nowrap;
-}
+#task-table td:nth-child(3),
 #task-table th:nth-child(3) {
-  width: 100px ;
-  max-width: 100px;
-  text-align:center;
-  text-wrap: nowrap;
+  text-align: center;
+  white-space: nowrap;
 }
 
-#task-table td:nth-child(4) {
-  width: 75px ;
-  max-width: 75px;
-  text-align:center;
-}
+#task-table td:nth-child(4),
 #task-table th:nth-child(4) {
-  width: 75px ;
-  max-width: 75px;
-  text-align:center;
+  text-align: center;
+  width: 75px;
 }
 
 tbody td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
-  white-space: normal;
-  word-break: break-word;
 }
 
 .completed td {
@@ -155,16 +137,4 @@ tbody td {
 
 .delete-btn {
   background-color: #050001;
-}
-
-#clear-btn {
-  margin-top: 15px;
-  background: #dc3545;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
-  box-sizing: border-box;
 }
