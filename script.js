@@ -90,20 +90,11 @@ function renderTasks() {
 
     const tdDate = document.createElement('td');
    
-    tdDate.textContent = toPersianNumber(`${(task.date)}`)+ toPersianNumber(` ${(task.time)}`);
+    // تبدیل تاریخ میلادی به شمسی با استفاده از persian-date
+    const pd = new persianDate(new Date(`${task.date}T${task.time}`));
+    const shamsiDate = pd.format('YYYY/MM/DD HH:mm');
 
-
-
-// تبدیل تاریخ میلادی به شمسی با استفاده از persian-date
-const pd = new persianDate(new Date(`${task.date}T${task.time}`));
-const shamsiDate = pd.format('YYYY/MM/DD HH:mm');
-
-tdDate.textContent = toPersianNumber(shamsiDate);
-
-
-
-
-
+    tdDate.textContent = toPersianNumber(shamsiDate);
 
     const tdDone = document.createElement('td');
     const doneBtn = document.createElement('button');
@@ -157,8 +148,24 @@ const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 tasks.forEach(task => {
   if (!task.completed) scheduleAlarm(task);
 });
+
 function toPersianNumber(number) {
   const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
   return number.toString().replace(/\d/g, d => persianDigits[d]);
 }
+function handleOrientation() {
+  const pTag = document.querySelector('p');
+  if (window.innerWidth > window.innerHeight) {
+    // حالت افقی
+    pTag.textContent = ''; // حذف محتوا
+  } else {
+    // حالت عمودی
+    pTag.textContent = 'نمایش موبایل را درحالت افقی تنظیم نمایید';
+  }
+}
 
+// اجرا در شروع
+handleOrientation();
+
+// اجرا هنگام تغییر سایز صفحه
+window.addEventListener('resize', handleOrientation);
