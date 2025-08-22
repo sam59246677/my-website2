@@ -119,3 +119,16 @@ tbody td {
   width: 100%;
   box-sizing: border-box;
 }
+#task-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+#task-table th:nth-child(1),
+#task-table td:nth-child(1) {
+  width: 40px;
+  max-width: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
