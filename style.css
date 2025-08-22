@@ -126,8 +126,8 @@ tbody td {
 
 #task-table th:nth-child(1),
 #task-table td:nth-child(1) {
-  width: 40px;
-  max-width: 40px;
+  width: 20px;
+  max-width: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
