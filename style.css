@@ -96,10 +96,36 @@ thead th {
 
 /* کاهش عرض ستون ردیف */
 #task-table th:nth-child(1),
-#task-table td:nth-child(1) {
-  width: 40px;
+#task-table td:nth-child(1),
+#task-table th:nth-child(5),
+#task-table td:nth-child(5) {
+  width: 40px ;
   max-width: 40px;
   text-align: center;
+}
+
+#task-table td:nth-child(3) {
+  width: 145px ;
+  max-width: 145px;
+  text-align:left;
+    text-wrap: nowrap;
+}
+#task-table th:nth-child(3) {
+  width: 100px ;
+  max-width: 100px;
+  text-align:center;
+  text-wrap: nowrap;
+}
+
+#task-table td:nth-child(4) {
+  width: 75px ;
+  max-width: 75px;
+  text-align:center;
+}
+#task-table th:nth-child(4) {
+  width: 75px ;
+  max-width: 75px;
+  text-align:center;
 }
 
 tbody td {
@@ -128,7 +154,7 @@ tbody td {
 }
 
 .delete-btn {
-  background-color: #dc3545;
+  background-color: #050001;
 }
 
 #clear-btn {

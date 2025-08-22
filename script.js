@@ -125,14 +125,17 @@ function renderTasks() {
 
     const tdDone = document.createElement('td');
     const doneBtn = document.createElement('button');
-    doneBtn.textContent = task.completed ? 'لغو انجام' : 'انجام شد';
+   
+   doneBtn.textContent = task.completed ? '\u2714' : '\u{1F6AB}';
+
     doneBtn.className = 'done-btn';
     doneBtn.addEventListener('click', () => toggleComplete(index));
     tdDone.appendChild(doneBtn);
 
     const tdDelete = document.createElement('td');
     const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'حذف';
+    deleteBtn.textContent = '\u274C';
+    
     deleteBtn.className = 'delete-btn';
     deleteBtn.addEventListener('click', () => {
       if (confirm('آیا مطمئن هستید این کار حذف شود؟')) {
