@@ -48,7 +48,6 @@ form input[type="text"] {
   min-width: 150px;
 }
 
-form input[type="date"],
 form input[type="time"],
 form button {
   flex-basis: 120px;
@@ -120,5 +119,3 @@ tbody td {
   width: 100%;
   box-sizing: border-box;
 }
-
-

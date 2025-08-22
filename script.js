@@ -1,3 +1,4 @@
+// دریافت المنت‌ها
 const form = document.querySelector('#task-form');
 const taskInput = document.querySelector('#task-input');
 const taskDate = document.querySelector('#task-date');
@@ -6,25 +7,54 @@ const taskTableBody = document.querySelector('#task-table tbody');
 const clearBtn = document.querySelector('#clear-btn');
 const sortBtn = document.querySelector('#sort-btn');
 
+// راه اندازی تقویم شمسی با persian-datepicker
+$(document).ready(function() {
+  $("#task-date").persianDatepicker({
+    format: 'YYYY/MM/DD',
+    autoClose: true,
+    initialValue: false,
+  });
+});
+
+// حذف یا نمایش متن تگ <p> با توجه به حالت صفحه (افقی/عمودی)
+function handleOrientation() {
+  const pTag = document.querySelector('p');
+  if (window.innerWidth > window.innerHeight) {
+    // حالت افقی -> حذف متن
+    pTag.textContent = '';
+  } else {
+    // حالت عمودی -> نمایش متن
+    pTag.textContent = 'نمایش موبایل را درحالت افقی تنظیم نمایید';
+  }
+}
+
+// اجرا در شروع و هنگام تغییر اندازه صفحه
+handleOrientation();
+window.addEventListener('resize', handleOrientation);
+
 form.addEventListener('submit', e => {
   e.preventDefault();
 
   const text = taskInput.value.trim();
-  const date = taskDate.value;
+  const persianDateStr = taskDate.value; // تاریخ شمسی
   const time = taskTime.value;
 
-  if (!text || !date || !time) {
+  if (!text || !persianDateStr || !time) {
     alert('لطفا همه فیلدها را پر کنید!');
     return;
   }
 
-  const datetime = new Date(`${date}T${time}`);
+  // تبدیل تاریخ شمسی به میلادی
+  const pDate = new persianDate(persianDateStr.replace(/-/g, '/')); // اگر - بود به / تبدیل کن
+  const gregorianDate = pDate.toCalendar('gregorian').format('YYYY-MM-DD');
+
+  const datetime = new Date(`${gregorianDate}T${time}`);
   if (datetime < new Date()) {
     alert("زمان واردشده نمی‌تواند قبل از الان باشد!");
     return;
   }
 
-  addTask(text, date, time);
+  addTask(text, gregorianDate, time);
 
   taskInput.value = '';
   taskDate.value = '';
@@ -81,19 +111,16 @@ function renderTasks() {
     if (task.completed) tr.classList.add('completed');
 
     const tdIndex = document.createElement('td');
-    
     tdIndex.textContent = toPersianNumber(index + 1);
-
 
     const tdText = document.createElement('td');
     tdText.textContent = task.text;
 
     const tdDate = document.createElement('td');
-   
-    // تبدیل تاریخ میلادی به شمسی با استفاده از persian-date
+
+    // تبدیل تاریخ میلادی به شمسی برای نمایش
     const pd = new persianDate(new Date(`${task.date}T${task.time}`));
     const shamsiDate = pd.format('YYYY/MM/DD HH:mm');
-
     tdDate.textContent = toPersianNumber(shamsiDate);
 
     const tdDone = document.createElement('td');
@@ -134,7 +161,7 @@ function scheduleAlarm(task) {
   }, delay);
 }
 
-// نوتیفیکیشن
+// درخواست دسترسی نوتیفیکیشن
 function requestNotificationPermission() {
   if ('Notification' in window && Notification.permission !== 'granted') {
     Notification.requestPermission();
@@ -153,19 +180,3 @@ function toPersianNumber(number) {
   const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
   return number.toString().replace(/\d/g, d => persianDigits[d]);
 }
-function handleOrientation() {
-  const pTag = document.querySelector('p');
-  if (window.innerWidth > window.innerHeight) {
-    // حالت افقی
-    pTag.textContent = ''; // حذف محتوا
-  } else {
-    // حالت عمودی
-    pTag.textContent = 'نمایش موبایل را درحالت افقی تنظیم نمایید';
-  }
-}
-
-// اجرا در شروع
-handleOrientation();
-
-// اجرا هنگام تغییر سایز صفحه
-window.addEventListener('resize', handleOrientation);
