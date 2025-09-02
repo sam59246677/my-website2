@@ -1,3 +1,4 @@
+/* پایه و بدنه */
 html, body {
   overflow-x: hidden;
   margin: 0;
@@ -12,13 +13,14 @@ body {
   box-sizing: border-box;
 }
 
+/* کانتینر اصلی */
 .container {
   max-width: 700px;
   margin: auto;
   background: white;
-  padding: 15px 20px;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 h1 {
@@ -26,48 +28,65 @@ h1 {
   margin-bottom: 15px;
 }
 
+p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* فرم ورودی‌ها */
 form {
   display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
   flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+form input[type="text"] {
+  flex-grow: 1;
+  min-width: 150px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form input[type="time"] {
+  flex-basis: 120px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 form button[type="submit"] {
   flex-basis: 100%;
   max-width: 200px;
   margin: 0 auto;
-  padding: 8px 0;
-  cursor: pointer;
+  padding: 10px 0;
+  font-size: 14px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-form input, form button {
-  padding: 8px 10px;
-  font-size: 14px;
+form button[type="submit"]:hover {
+  background-color: #0056b3;
 }
 
-form input[type="text"] {
-  flex-grow: 1;
-  min-width: 150px;
-}
-
-form input[type="time"] {
-  flex-basis: 120px;
-}
-
+/* دکمه‌های مرتب‌سازی و پاک کردن */
 #sort-btn, #clear-btn {
   width: 100%;
-  padding: 8px 12px;
+  padding: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  box-sizing: border-box;
   margin-top: 10px;
+  font-size: 14px;
+  transition: background 0.3s;
 }
 
 #sort-btn {
@@ -75,11 +94,20 @@ form input[type="time"] {
   color: white;
 }
 
+#sort-btn:hover {
+  background-color: #117a8b;
+}
+
 #clear-btn {
   background-color: #dc3545;
   color: white;
 }
 
+#clear-btn:hover {
+  background-color: #a71d2a;
+}
+
+/* جدول وظایف */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -89,7 +117,8 @@ table {
 thead th {
   background: #007bff;
   color: white;
-  padding: 8px;
+  padding: 10px 5px;
+  text-align: center;
 }
 
 #task-table th:nth-child(1),
@@ -100,14 +129,14 @@ thead th {
   text-align: center;
 }
 
-#task-table td:nth-child(3),
-#task-table th:nth-child(3) {
+#task-table th:nth-child(3),
+#task-table td:nth-child(3) {
   text-align: center;
   white-space: nowrap;
 }
 
-#task-table td:nth-child(4),
-#task-table th:nth-child(4) {
+#task-table th:nth-child(4),
+#task-table td:nth-child(4) {
   text-align: center;
   width: 75px;
 }
@@ -116,25 +145,54 @@ tbody td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+  word-wrap: break-word;
 }
 
+/* کارهای انجام شده */
 .completed td {
   text-decoration: line-through;
   color: gray;
 }
 
+/* دکمه‌های وضعیت و حذف */
 .done-btn, .delete-btn {
   padding: 5px 10px;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 4px;
   border: none;
   color: white;
+  font-size: 14px;
+  transition: transform 0.2s;
 }
 
 .done-btn {
   background-color: #28a745;
 }
 
+.done-btn:hover {
+  transform: scale(1.1);
+}
+
 .delete-btn {
-  background-color: #050001;
+  background-color: #6c757d;
+}
+
+.delete-btn:hover {
+  background-color: #343a40;
+  transform: scale(1.1);
+}
+
+/* ریسپانسیو */
+@media (max-width: 500px) {
+  form {
+    flex-direction: column;
+  }
+
+  form input[type="time"] {
+    flex-basis: 100%;
+  }
+
+  form button[type="submit"] {
+    max-width: 100%;
+  }
 }
